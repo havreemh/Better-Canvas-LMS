@@ -51,3 +51,11 @@ Master list of everything discussed for the app. Organized by subsystem so it's 
 
 ## 8. Links Center
 - Bookmark-style hub for saved/important links, built into the app
+
+## 9. Non-Canvas Platform Integrations (AP Classroom, Pearson)
+- Goal: pull assignments/due dates from College Board AP Classroom and Pearson (Realize/MyLab/etc.) into the same unified todo list/dashboard as Canvas, since AP coursework often lives outside Canvas entirely
+- **Feasibility caveat, unlike Canvas Sync above:** neither platform offers a public, student-facing API or personal access token system. Canvas Sync can request data as an authorized client; these can't. Realistic approaches, roughly in order of robustness vs. effort:
+  - *Manual entry fast-path* — quick-add UI so items from these platforms take 10 seconds to log into the unified todo list, no automation required (near-zero effort, always works, always up to date only if you keep doing it)
+  - *Browser-extension "scrape on visit"* — a companion extension that reads assignment data out of the page when you're already logged in and viewing AP Classroom/Pearson, then pushes it into the app (no credential storage, but only syncs when you visit; layout changes break the parser)
+  - *Headless-session sync* — app logs in on your behalf on a schedule and scrapes in the background (most "automatic," but means storing your credentials/session, fights bot-detection, breaks on redesigns, and likely violates ToS — treat as high-risk, not a near-term milestone)
+- Suggest scoping the first version as manual entry only, and treating scraping (of either kind) as a later, explicitly-opt-in phase once the rest of the app is stable
